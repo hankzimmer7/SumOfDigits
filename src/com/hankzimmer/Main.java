@@ -3,31 +3,28 @@ package com.hankzimmer;
 public class Main {
 
     public static void main(String[] args) {
-        // write your code here
+        // example inputs
         System.out.println(sumDigits(1));
         System.out.println(sumDigits(125));
-        System.out.println(sumDigits(222222));
+        System.out.println(sumDigits(22591));
+        System.out.println(sumDigits(999999999));
+        System.out.println(sumDigits(-20));
     }
 
-    public static int sumDigits(int number) {
-
-        int sumOfDigits = 0;
-        if (number >= 10) {
-            int nextDigit;
-            int processedNumber = number;
-
-            while (processedNumber >= 1){
-                nextDigit = processedNumber % 10;
-                System.out.println("The next digit is " + nextDigit);
-                sumOfDigits += nextDigit;
-                System.out.println("The current sum of digits is " + sumOfDigits);
-
-                processedNumber = processedNumber/10;
-                System.out.println("The processed number is now " + processedNumber);
-            }
-            return sumOfDigits;
-        } else {
+    //returns the sum of the digits
+    private static int sumDigits(int number) {
+        //The input must be positive
+        if (number < 0) {
             return -1;
         }
+        int sum = 0;
+        int nextDigit;
+        //Continue combining digits until the last digit is combined (and number will be 0)
+        while (number > 0) {
+            nextDigit = number % 10;
+            sum += nextDigit;
+            number /= 10;
+        }
+        return sum;
     }
 }
